@@ -1,0 +1,160 @@
+<head>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<script type="text/javascript">
+	var startColor = "000000"
+	var listItems = new Array("Элемент 1", "Элемент 2", "Элемент 3",
+								"Элемент 4", "Элемент 5", "Элемент 6","Элемент 7", "Элемент 8", "Элемент 9","Элемент 10");
+	var position = 0;
+	
+	$(document).ready(function(){
+		
+				$("#button2").click(function(){
+
+					  $('#text3').css({fontSize: 50+'px'});
+				});
+				
+				$("#button3").click(function(){
+					$("#text2").unwrap();
+					$("#text2").wrap("<b></b>");
+				});
+				
+				
+				$("#but3").click(function(){
+					for (var i3 = 0; i3 < 3; i3++){
+						$("#myList2").append('<li>Новый элемент №' + i3 + '</li>');
+					}
+				});
+		}); 
+		
+		function onLoad(){
+			$("#myText").css("color", startColor);
+			loadList();
+			
+			
+		}
+		
+		function changeColor(){
+			$("#myText").css("color", $("#enterColor").val());
+		}
+		
+		function loadList(){
+			$.each(listItems, function(n, val) {
+				$("#myList").append('<li id="' + (n + 1) + '">' + val + '</li>');
+			});
+			
+			var max = $('#myList > li').length - 1;
+			$("#item1").attr("max", max);
+			$("#item2").attr("max", max);
+			$("#elementInfo").val($("#myList > li").html() + ". Тип - " + $("#myList > li")[0].tagName);
+		}
+		
+		function editList(){
+			var item1 = $("#item1").val();
+			var item2 = $("#item2").val();
+			
+			
+			var textBuf = $("#" + item1 + "").text();
+			var text = $("#" + item2 + "").text();
+			
+			$("#" + item1 + "").text(text);
+			$("#" + item2 + "").text(textBuf);
+		}
+		
+		function first(){
+			$("#elementInfo").val($('#myList').find(':first-child').html() + ". Тип - " + $('#myList').find(':first-child')[0].tagName);
+			position = 0;
+		}
+		
+		function prev(){
+			if (position != 0){
+				$("#elementInfo").val($("#" + position + "").prev().html() + ". Тип - " + $("#" + position + "").prev()[0].tagName);
+				position -= 1;
+			}
+		}
+		
+		function next(){
+			if (position != ($('#myList > li').length - 1)){
+				$("#elementInfo").val($("#" + position + "").next().html() + ". Тип - " + $("#" + position + "").next()[0].tagName);
+				position += 1;
+			}
+		}
+		
+		function last(){
+			$("#elementInfo").val($('#myList').find(':last-child').html() + ". Тип - " + $('#myList').find(':last-child')[0].tagName);
+			position = $('#myList > li').length - 1;
+		}
+		
+		
+		function changeStyle(){
+			$('input#butt').each(function() {
+				$(this).css("font-weight", "bold");
+				$(this).css("color", "pink");
+			});
+			
+			
+		}
+		function fontSize() {
+		  var width = 1000; // ширина, от которой идет отсчет
+		  var fontSize = 12; // минимальный размер шрифта
+		  var bodyWidth = $('html').width();
+		  var multiplier = bodyWidth / width;
+		  if ($('html').width() >= width) fontSize = Math.floor(fontSize * multiplier);
+		  $('body').css({fontSize: fontSize+'px'});
+		}
+$(function() { fontSize(); });
+$(window).resize(function() { fontSize(); });
+		
+		
+</script>
+</head>
+<BODY onload='onLoad()' align="center">
+	
+    Митрофанов Александр  ПИ3-2
+	Варианты: A12, B1, C4, D4
+	<br><br>А12. Отобразить заголовок документа "Просто Кексик"
+	 <head>
+        <title>Просто Кексик</title>
+    </head>
+	
+	<p id="myText">
+	
+	
+	<br><br>B2. Построение списка при загрузке
+	<ul id='myList'>
+		<li>Элемент 0</li>
+	</ul>
+	C4. Перестановка списка<br>
+	Поменять элемент <input id="item1" value='0' style="width: 30"> c <input id="item2" value='4' style="width: 30"><br>
+	<input type='button' onclick='editList()' value='Переставить'>
+	<br><br>D4. Навигация по элементам списка<br>
+	<input id="elementInfo" value=''><br>
+	<input type='button' onclick='first()' id="butt" value='Первый элемент'><br>
+	<input type='button' onclick='prev()' id="butt" value='Предыдущий элемент'><br>
+	<input type='button' onclick='next()' id="butt" value='Следующий элемент'><br>
+	<input type='button' onclick='last()' id="butt" value='Последний элемент'>
+	<h3>Задание 4</h3>
+	Варианты селекторов:<br>
+	6 - $("p#par")<br>
+	4 - $(this)<br>
+	Варианты действий:<br>
+	7 - Изменить размер шрифта<br> 
+	1 - изменение внутреннее содержимое выбранного элемента<br>
+	12 - изменить размер шрифта<br>
+	11 - поменять стиль шрифта<br>
+	
+	----------------------------------------------------------------------------------------------------------------<br><br>
+	
+	<input type='button' onclick='changeStyle()' value='Сменить стиль текста кнопок навигации (выше)'> (действие 11)<br>
+	
+	<p id="text3">Оборачиваемый текст</p>
+	<input type='button' id="button2" value='Изменить размер шрифта'> (действие 12)<br>
+	
+	<p id="text2">Измененный стиль текста</p>
+	<input type='button' id="button3" value='Изменить стиль текста'> (действие 11)<br>
+	
+		<ul id='myList2'>
+		<li id="0">Элемент списка</li>
+	</ul>
+	<input type='button' id="but3" value='изменить содержимое списка'> (действие: 1)
+	
+</BODY>
