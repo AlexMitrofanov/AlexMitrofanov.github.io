@@ -1,12 +1,7 @@
-<html> 
-<body> 
-<script> 
-function go() { 
- alert(document.documentElement.nodeType) 
-alert(document.body.lastChild.nodeType) 
- } 
-</script> 
- <input type="button" onclick="go()" value="Go"/> 
-Текст 
-</body> 
-</html> 
+var w = window.innerWidth
+|| document.documentElement.clientWidth
+|| document.body.clientWidth;
+
+var h = window.innerHeight
+|| document.documentElement.clientHeight
+|| document.body.clientHeight;
