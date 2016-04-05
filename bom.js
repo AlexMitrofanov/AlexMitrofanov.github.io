@@ -1,7 +1,10 @@
-var w = window.innerWidth
-|| document.documentElement.clientWidth
-|| document.body.clientWidth;
+<html>
+<body>
 
-var h = window.innerHeight
-|| document.documentElement.clientHeight
-|| document.body.clientHeight;
+Имя домена сервера, который загрузил этот документ: 
+<script type="text/javascript">
+document.write(document.domain);
+</script>
+
+</body>
+</html>
