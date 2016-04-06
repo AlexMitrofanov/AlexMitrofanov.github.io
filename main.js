@@ -1,10 +1,15 @@
-<html>
-<body>
+function changeBckgColor() {
+    if (document.body.style.background.valueOf() === new String("green").valueOf()) {
+        document.body.style.background = "";
+    } else {
+        document.body.style.background = "green";
+    }
+}
 
-Имя домена сервера, который загрузил этот документ: 
-<script type="text/javascript">
-document.write(document.domain);
-</script>
+function showHost() {
+    alert(location.host);
+}
 
-</body>
-</html>
+function showBrowser() {
+    alert(navigator.userAgent);
+}
